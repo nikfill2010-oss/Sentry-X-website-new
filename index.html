@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ultra Protector</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #222;
+      background: #f5f5f5;
+    }
+
+    nav {
+      background: #1a1a2e;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    nav h1 { font-size: 1.2rem; }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    nav a:hover { color: white; }
+
+    .hero {
+      background: #1a1a2e;
+      color: white;
+      text-align: center;
+      padding: 5rem 2rem;
+    }
+
+    .hero h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: #ccc;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    .hero a {
+      display: inline-block;
+      background: #e63946;
+      color: white;
+      padding: 0.8rem 2rem;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    .hero a:hover { background: #c1121f; }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      color: #1a1a2e;
+      border-left: 4px solid #e63946;
+      padding-left: 0.8rem;
+    }
+
+    p { margin-bottom: 1rem; color: #444; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 1.2rem;
+    }
+
+    .card h3 { font-size: 1rem; color: #1a1a2e; margin-bottom: 0.5rem; }
+    .card p { font-size: 0.9rem; color: #555; margin: 0; }
+    .card .icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+
+    .steps { margin-top: 1.5rem; }
+
+    .step {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 1.2rem;
+    }
+
+    .step-num {
+      background: #1a1a2e;
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .step-content h3 { font-size: 1rem; color: #1a1a2e; margin-bottom: 0.2rem; }
+    .step-content p { font-size: 0.9rem; color: #555; margin: 0; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.5rem;
+      background: white;
+    }
+
+    table tr { border-bottom: 1px solid #ddd; }
+    table tr:hover { background: #f9f9f9; }
+    table td { padding: 0.8rem 1rem; font-size: 0.9rem; }
+    table td:first-child { color: #555; font-weight: bold; width: 40%; }
+    table td:last-child { color: #1a1a2e; }
+
+    .qa-block {
+      background: white;
+      border: 1px solid #ddd;
+      border-left: 4px solid #e63946;
+      border-radius: 4px;
+      padding: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .qa-block .label {
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: #e63946;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.3rem;
+    }
+
+    .qa-block .answer .label { color: #1a1a2e; margin-top: 0.8rem; }
+
+    .authors {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .authors { grid-template-columns: 1fr; }
+      nav ul { display: none; }
+    }
+
+    .author-card {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .author-card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    .author-info { padding: 1.2rem; }
+    .author-info h3 { color: #1a1a2e; margin-bottom: 0.2rem; }
+    .author-info .role {
+      font-size: 0.8rem;
+      color: #e63946;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .author-info p { font-size: 0.9rem; color: #555; margin: 0; }
+
+    .timeline { margin-top: 1.5rem; }
+
+    .tl-row {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      align-items: flex-start;
+    }
+
+    .tl-date {
+      min-width: 100px;
+      font-weight: bold;
+      color: #1a1a2e;
+      font-size: 0.85rem;
+      padding-top: 0.6rem;
+    }
+
+    .tl-body {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 0.8rem 1rem;
+      flex: 1;
+    }
+
+    .tl-body h4 { color: #1a1a2e; font-size: 0.95rem; margin-bottom: 0.2rem; }
+    .tl-body p { font-size: 0.85rem; color: #555; margin: 0; }
+
+    .future-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .future-item {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.9rem;
+      color: #333;
+    }
+
+    .future-item span:first-child { font-size: 1.4rem; }
+
+    hr { border: none; border-top: 1px solid #ddd; margin: 0; }
+
+    .screenshots {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    @media (max-width: 600px) { .screenshots { grid-template-columns: 1fr; } }
+
+    .placeholder-img {
+      background: #e0e0e0;
+      border: 1px dashed #bbb;
+      border-radius: 4px;
+      aspect-ratio: 16/9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.4rem;
+      color: #888;
+      font-size: 0.8rem;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .note {
+      background: #fff8e1;
+      border: 1px solid #ffe082;
+      border-radius: 4px;
+      padding: 0.8rem 1rem;
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 0.8rem;
+    }
+
+    .bg-white { background: white; }
+
+    footer {
+      background: #1a1a2e;
+      color: #aaa;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.85rem;
+    }
+
+    footer span { color: white; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <h1>Ultra Protector</h1>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#tech">Tech</a></li>
+    <li><a href="#sponsor">Sponsor</a></li>
+    <li><a href="#authors">Authors</a></li>
+    <li><a href="#timeline">Timeline</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <h2>Ultra Protector</h2>
+  <p>An autonomous turret that protects your computer by shooting plastic balls at hostile targets.</p>
+  <a href="#about">Learn More</a>
+</div>
+
+<hr/>
+
+<!-- 1. ABOUT -->
+<div class="container" id="about">
+  <h2>Project Description</h2>
+
+  <div class="grid">
+    <div class="card">
+      <div class="icon">🛡️</div>
+      <h3>What Is It?</h3>
+      <p>Ultra Protector is an automated defense turret that mounts near your computer and shoots plastic balls at anyone who tries to access it without permission.</p>
+    </div>
+    <div class="card">
+      <div class="icon">⚠️</div>
+      <h3>The Problem</h3>
+      <p>Computers are vulnerable to physical intrusion. Software security can't stop someone from physically sitting down and using your machine when you're away.</p>
+    </div>
+    <div class="card">
+      <div class="icon">💡</div>
+      <h3>Why It Matters</h3>
+      <p>Physical security of personal devices is often ignored. Ultra Protector adds a first line of physical defense that acts before anyone touches the keyboard.</p>
+    </div>
+    <div class="card">
+      <div class="icon">⭐</div>
+      <h3>What Makes It Unique</h3>
+      <p>Unlike alarms or software locks, Ultra Protector responds physically — shooting harmless plastic balls to surprise and deter intruders instantly.</p>
+    </div>
+  </div>
+</div>
+
+<hr/>
+
+<!-- 2. FEATURES & HOW IT WORKS -->
+<div class="bg-white">
+<div class="container" id="features">
+  <h2>How It Works</h2>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h3>System Armed</h3>
+        <p>The owner activates Ultra Protector when leaving the workstation. The turret enters active scanning mode.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h3>Motion Detected</h3>
+        <p>The PIR motion sensor detects movement in the area and identifies it as a potential threat.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h3>Turret Aims</h3>
+        <p>The servo motor rotates the barrel to face the direction of the detected target.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h3>Ball Fired</h3>
+        <p>A harmless plastic ball is launched toward the intruder, surprising and deterring them.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <h3>Reset</h3>
+        <p>The system resets and continues monitoring until the owner disarms it.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 style="margin-top:2.5rem;">Features</h2>
+  <div class="grid">
+    <div class="card"><h3>👁️ Motion Detection</h3><p>Continuously scans using a PIR sensor.</p></div>
+    <div class="card"><h3>🎯 Auto-Targeting</h3><p>Servo motors rotate the barrel toward the threat.</p></div>
+    <div class="card"><h3>💥 Ball Launcher</h3><p>Fires a safe plastic ball at the detected target.</p></div>
+    <div class="card"><h3>🔒 Arm / Disarm</h3><p>Simple button to activate or deactivate the system.</p></div>
+    <div class="card"><h3>⚡ Fast Response</h3><p>Reacts in under 3 seconds from detection to firing.</p></div>
+    <div class="card"><h3>🔧 Desk Mountable</h3><p>Fits on any desk or shelf with an adjustable bracket.</p></div>
+  </div>
+
+  <h2 style="margin-top:2.5rem;">Demo / Visuals</h2>
+  <div class="screenshots">
+    <div class="placeholder-img"><span>📷</span><span>Detection Mode Screenshot</span></div>
+    <div class="placeholder-img"><span>🎯</span><span>Targeting Demo</span></div>
+    <div class="placeholder-img"><span>💥</span><span>Firing Sequence</span></div>
+  </div>
+  <div class="note">⚠️ Replace these placeholders with actual screenshots or a video demo embed.</div>
+</div>
+</div>
+
+<hr/>
+
+<!-- 3. PROTOTYPE -->
+<div class="container" id="prototype">
+  <h2>Final Prototype / Design</h2>
+  <p>Schematic diagram of the Ultra Protector turret system:</p>
+
+  <div style="background:#f0f0f0;border:1px solid #ddd;border-radius:6px;padding:2rem;text-align:center;">
+    <svg width="480" height="220" viewBox="0 0 480 220" fill="none" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;height:auto;">
+      <text x="10" y="15" fill="#888" font-family="Arial" font-size="10">ULTRA PROTECTOR — SCHEMATIC v1.0</text>
+      <rect x="140" y="175" width="200" height="22" rx="3" fill="#ccc" stroke="#555" stroke-width="1.5"/>
+      <text x="195" y="190" fill="#666" font-family="Arial" font-size="10">MOUNTING BASE</text>
+      <rect x="195" y="158" width="90" height="20" rx="2" fill="#bbb" stroke="#555" stroke-width="1"/>
+      <circle cx="240" cy="168" r="5" fill="#888"/>
+      <rect x="185" y="105" width="110" height="55" rx="4" fill="#ddd" stroke="#555" stroke-width="1.5"/>
+      <ellipse cx="240" cy="103" rx="60" ry="26" fill="#ccc" stroke="#555" stroke-width="1.5"/>
+      <rect x="240" y="96" width="120" height="14" rx="3" fill="#bbb" stroke="#555" stroke-width="1.5"/>
+      <rect x="354" y="99" width="18" height="8" rx="2" fill="#aaa" stroke="#777" stroke-width="1"/>
+      <circle cx="218" cy="103" r="12" fill="#888" stroke="#555" stroke-width="1.5"/>
+      <circle cx="218" cy="103" r="6" fill="#e63946"/>
+      <circle cx="218" cy="103" r="2.5" fill="white"/>
+      <rect x="157" y="118" width="28" height="36" rx="2" fill="#bbb" stroke="#555" stroke-width="1" stroke-dasharray="4 2"/>
+      <text x="130" y="133" fill="#666" font-family="Arial" font-size="9">AMMO</text>
+      <text x="126" y="145" fill="#666" font-family="Arial" font-size="9">HOPPER</text>
+      <circle cx="400" cy="103" r="5" fill="#e63946"/>
+      <circle cx="415" cy="103" r="5" fill="#e63946" opacity="0.6"/>
+      <circle cx="430" cy="103" r="5" fill="#e63946" opacity="0.3"/>
+      <text x="393" y="120" fill="#e63946" font-family="Arial" font-size="9">PLASTIC BALL</text>
+      <line x1="305" y1="103" x2="322" y2="72" stroke="#555" stroke-width="0.7"/>
+      <text x="324" y="70" fill="#555" font-family="Arial" font-size="9">SERVO MOTOR</text>
+      <line x1="240" y1="132" x2="320" y2="148" stroke="#555" stroke-width="0.7"/>
+      <text x="322" y="151" fill="#555" font-family="Arial" font-size="9">CONTROL UNIT</text>
+    </svg>
+  </div>
+  <div class="note">⚠️ Add your actual hand-drawn or digital design sketches here.</div>
+</div>
+
+<hr/>
+
+<!-- 4. TECH -->
+<div class="bg-white">
+<div class="container" id="tech">
+  <h2>Technical Requirements</h2>
+  <table>
+    <tr><td>Hardware Platform</td><td>Arduino / Raspberry Pi</td></tr>
+    <tr><td>Motion Sensor</td><td>PIR Motion Sensor Module</td></tr>
+    <tr><td>Actuator</td><td>Servo Motors</td></tr>
+    <tr><td>Launcher</td><td>Spring / Motor-driven ball launcher</td></tr>
+    <tr><td>Programming Language</td><td>C++ (Arduino IDE)</td></tr>
+    <tr><td>Power Supply</td><td>USB / 9V Battery</td></tr>
+    <tr><td>Ammo Type</td><td>6mm Plastic Balls (harmless)</td></tr>
+    <tr><td>Detection Range</td><td>Up to 3–5 meters</td></tr>
+    <tr><td>Response Time</td><td>Under 3 seconds</td></tr>
+    <tr><td>Mount Type</td><td>Desk-mountable bracket</td></tr>
+  </table>
+</div>
+</div>
+
+<hr/>
+
+<!-- 5. SPONSOR -->
+<div class="container" id="sponsor">
+  <h2>Sponsor Interview</h2>
+  <p><strong>Sponsor:</strong> [Name] &nbsp;|&nbsp; <strong>Date:</strong> [Date]</p>
+
+  <div class="qa-block">
+    <div class="label">Question 1</div>
+    <div>What do you think about physical security for personal computer setups?</div>
+    <div class="answer">
+      <div class="label">Answer</div>
+      <div>[Add sponsor's answer here]</div>
+    </div>
+  </div>
+
+  <div class="qa-block">
+    <div class="label">Question 2</div>
+    <div>Would a physical deterrent device make you feel more secure at your workstation?</div>
+    <div class="answer">
+      <div class="label">Answer</div>
+      <div>[Add sponsor's answer here]</div>
+    </div>
+  </div>
+
+  <div class="qa-block">
+    <div class="label">Question 3</div>
+    <div>What features would you want most in a system like Ultra Protector?</div>
+    <div class="answer">
+      <div class="label">Answer</div>
+      <div>[Add sponsor's answer here]</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:1.2rem;">
+    <h3>What We Learned</h3>
+    <p>[Summarize key takeaways from the interview and how the sponsor's feedback shaped the project.]</p>
+  </div>
+</div>
+
+<hr/>
+
+<!-- 6. AUTHORS -->
+<div class="bg-white">
+<div class="container" id="authors">
+  <h2>About the Authors</h2>
+
+  <div class="authors">
+    <div class="author-card">
+      <img src="WhatsApp_Image_2026-03-30_at_14_01_01.jpeg" alt="Nikita" onerror="this.style.display='none'"/>
+      <div class="author-info">
+        <h3>Nikita</h3>
+        <div class="role">Hardware Engineer & Lead Developer</div>
+        <p>Responsible for the mechanical design and assembly of the Ultra Protector turret, including servo motor control and the launcher mechanism. Passionate about robotics and physical computing.</p>
+      </div>
+    </div>
+
+    <div class="author-card">
+      <img src="WhatsApp_Image_2026-03-30_at_14_04_40.jpeg" alt="Dias" onerror="this.style.display='none'"/>
+      <div class="author-info">
+        <h3>Dias</h3>
+        <div class="role">Software Developer & System Designer</div>
+        <p>Responsible for programming the microcontroller, detection algorithms, and system logic. Focused on making the system reliable, fast, and easy to use.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:1.2rem;">
+    <h3>Our Motivation</h3>
+    <p>We wanted to combine our interests in electronics and programming into a project that is both practical and fun to build. Physical security felt like a creative challenge — and we liked the idea of making something real that people can actually see and interact with.</p>
+  </div>
+</div>
+</div>
+
+<hr/>
+
+<!-- 7. TIMELINE + FUTURE -->
+<div class="container" id="timeline">
+  <h2>Timeline</h2>
+
+  <div class="timeline">
+    <div class="tl-row">
+      <div class="tl-date">Week 1</div>
+      <div class="tl-body"><h4>Research & Concept</h4><p>Defined the project idea, researched hardware, and outlined system requirements.</p></div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-date">Week 2</div>
+      <div class="tl-body"><h4>Initial Design</h4><p>Created first sketches and prototype plans. Ordered components and set up the development environment.</p></div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-date">Week 3</div>
+      <div class="tl-body"><h4>Hardware Assembly</h4><p>Built the turret frame, connected servo motors, and integrated the motion sensor.</p></div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-date">Week 4</div>
+      <div class="tl-body"><h4>Software Development</h4><p>Programmed detection logic, servo rotation, and the firing sequence.</p></div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-date">Spring Break</div>
+      <div class="tl-body"><h4>Final Integration & Website</h4><p>Completed testing, polished the prototype, built this homepage, and uploaded everything to GitHub.</p></div>
+    </div>
+  </div>
+
+  <h2 style="margin-top:2.5rem;">Future Improvements</h2>
+  <div class="future-list">
+    <div class="future-item"><span>📱</span><span>Smartphone app control</span></div>
+    <div class="future-item"><span>🤖</span><span>Face recognition for owner ID</span></div>
+    <div class="future-item"><span>🔋</span><span>Wireless battery operation</span></div>
+    <div class="future-item"><span>📊</span><span>Activity log dashboard</span></div>
+    <div class="future-item"><span>🎯</span><span>Camera-based targeting</span></div>
+    <div class="future-item"><span>🔊</span><span>Audio alarm integration</span></div>
+  </div>
+</div>
+
+<hr/>
+
+<footer>
+  <p><span>Ultra Protector</span> — Built by Nikita & Dias — 2026</p>
+</footer>
+
+</body>
+</html>
